@@ -73,8 +73,8 @@ class SpiSim:
         my_env = os.environ.copy()
         my_env.update(settings.aedt_environment_variables)
         if is_linux:  # pragma: no cover
-            if "ANSYSEM_ROOT_PATH" not in os.environ:
-                os.environ["ANSYSEM_ROOT_PATH"] = self.desktop_install_dir
+            if "ANSYSEM_ROOT_PATH" not in my_env:
+                my_env.update({"ANSYSEM_ROOT_PATH": self.desktop_install_dir})
             command.append("&")
             with open_file(out_processing, "w") as outfile:
                 subprocess.Popen(command, env=my_env, stdout=outfile, stderr=outfile).wait()  # nosec
