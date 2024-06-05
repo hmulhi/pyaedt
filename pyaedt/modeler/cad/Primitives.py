@@ -507,8 +507,8 @@ class GeometryModeler(Modeler):
         list of :class:`pyaedt.modeler.cad.object3d.Object3d`
             3D object.
         """
-        # self._refresh_solids()
-        return [self[name] for name in self.solid_names if self[name]]
+        self._refresh_solids()
+        return [v for k, v in self.objects_by_name.items() if k in self._solids]
 
     @property
     def sheet_objects(self):
